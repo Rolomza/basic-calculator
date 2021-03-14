@@ -15,6 +15,30 @@ body {
 .calc-container {
     background-color: #212121;
     width: 300px;
-    height: 460px;
+    height: 450px;
     border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.display {
+    background-color: #3b3b3b;
+    width: 268px;
+    height: 80px;
+    margin-top: 15px;
+    border-radius: 15px;
+}
+
+.button-grid {
+    width: 280px;
+    height: 330px;
+    margin: 15px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+#equal-btn {
+    grid-column: 3 / 5;
 }
