@@ -3,3 +3,18 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.calc-container {
+    background-color: #212121;
+    width: 300px;
+    height: 460px;
+    border-radius: 15px;
+}
