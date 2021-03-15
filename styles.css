@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: cornflowerblue;
 }
 
 .main-container {
@@ -29,6 +30,23 @@ body {
     height: 80px;
     margin-top: 15px;
     border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    color: #60A07F
+}
+
+.user-input {
+    height: 50%;
+    margin: 10px;
+    font-size: 1.3rem;
+}
+
+.result {
+    height: 50%;
+    color: white;
+    font-size: 1.8rem;
+    margin-right: 15px;
 }
 
 .button-grid {
@@ -39,6 +57,10 @@ body {
     grid-template-columns: repeat(4,1fr);
 }
 
-#equal-btn {
+#clear-btn {
+    grid-column: 1 / 3;
+}
+
+#delete-btn {
     grid-column: 3 / 5;
 }
