@@ -77,8 +77,11 @@ const calculusLogic = () => {
         }
         break;
     }
-    return resultDisplay.textContent = String(result)
+    resultDisplay.textContent = String(result)
+    return result
 }
+
+
 
 let validCalc
 
@@ -90,7 +93,8 @@ const solve = () => {
     } else {
         return
     }
-    
+    userInputArr = []
+    userInputArr[0] = result
 }
 
 //Event Listeners (Mouse)
