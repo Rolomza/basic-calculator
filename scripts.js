@@ -56,22 +56,28 @@ const calculusLogic = () => {
         }
     })
     switch (operator) {
-        case '+': resultDisplay.textContent = String(operate(add, num1, num2))
+        case '+': result = operate(add, num1, num2)
             break;
-        case '-': resultDisplay.textContent = String(operate(substract, num1, num2))
+        case '-': result = operate(substract, num1, num2)
             break;
-        case '*': resultDisplay.textContent = String(operate(multiply, num1, num2))
+        case '*':
+            if (Number.isInteger(num1 * num2)) {
+                result = operate(multiply, num1, num2)
+            } else {
+                result = operate(multiply, num1, num2).toFixed(4)
+            }
             break;
         case '÷':
-        if(num2 === 0) {
-            resultDisplay.textContent = 'Math Error'
-        } else if (num1 % num2 !== 0) {
-            resultDisplay.textContent = String(operate(divide, num1, num2).toFixed(4))
-        } else {
-            resultDisplay.textContent = String(operate(divide, num1, num2))
+            if(num2 === 0) {
+                result = 'Math Error'
+            } else if (num1 % num2 !== 0) {
+                result = operate(divide, num1, num2).toFixed(4)
+            } else {
+                rresult = operate(divide, num1, num2)
         }
         break;
     }
+    return resultDisplay.textContent = String(result)
 }
 
 let validCalc
@@ -96,26 +102,6 @@ deleteBtn.addEventListener('click', deleteInput)
 clearBtn.addEventListener('click', clearInput)
 equalBtn.addEventListener('click', solve)
 
-//Event Listeners (Keyboard)
-
-// const pressedKey = document.addEventListener('keydown', e => {
-//     if(nums.includes(Number(e.key))) {
-//         console.log('hola')
-//         // document.querySelectorAll('.num').click()
-//     }
-
-// })
-
-
-
-// numberBtns.forEach(btn => btn.addEventListener('click', userDataInput))
-// operatorBtns.forEach(btn => btn.addEventListener('click', userDataInput))
-// dotBtn.addEventListener('click', userDataInput)
-// deleteBtn.addEventListener('click', deleteInput)
-// clearBtn.addEventListener('click', clearInput)
-// equalBtn.addEventListener('click', solve)
-
-
 //Main functions
 
 const add = (a,b) => a + b;
@@ -124,5 +110,3 @@ const multiply = (a,b) => a * b;
 const divide = (a,b) => a / b;
 
 const operate = (operator, num1, num2) => (operator(num1,num2));
-
-
