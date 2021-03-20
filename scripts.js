@@ -1,4 +1,6 @@
 //Buttons selectors
+const numberBtnsMobile = document.querySelectorAll('.num')
+const operatorBtnsMobile = document.querySelectorAll('.operator')
 const numberBtns = Array.from(document.querySelectorAll('.num'))
 const operatorBtns = Array.from(document.querySelectorAll('.operator'))
 const clearBtn = document.getElementById('clear-btn')
@@ -12,8 +14,17 @@ let num1
 let num2
 let operator
 let result
+let validCalc
 const userInputDisplay = document.querySelector('.user-input')
 const resultDisplay = document.querySelector('.result')
+
+//Main functions
+
+const add = (a,b) => a + b;
+const substract = (a,b) => a - b;
+const multiply = (a,b) => a * b;
+const divide = (a,b) => a / b;
+const operate = (operator, num1, num2) => (operator(num1,num2));
 
 //Button Functions
 const userDataInput = e => {
@@ -37,6 +48,17 @@ const clearInput = () => {
     resultDisplay.textContent = ''
 }
 
+const solve = () => {
+    verifySyntax(userInputArr)
+    if (validCalc) {
+        calculusLogic(userInputArr)
+    } else {
+        return
+    }
+    userInputArr = []
+    userInputArr[0] = result
+}
+
 const verifySyntax = (arr) => {
     let lastValue = userInputArr[userInputArr.length - 1]
     if (lastValue === '+' || lastValue === '-' || lastValue === '*' || lastValue === '÷' || lastValue === '.') {
@@ -47,12 +69,12 @@ const verifySyntax = (arr) => {
     }
 }
 
-const calculusLogic = () => {
-    userInputArr.forEach(value => {
+const calculusLogic = (arr) => {
+    arr.forEach(value => {
         if(value === '+' || value === '-' || value === '*' || value === '÷') {
             operator = value
-            num1 = Number(userInputArr.slice(0, userInputArr.indexOf(value)).join(''))
-            num2 = Number(userInputArr.slice(userInputArr.indexOf(value) + 1).join(''))
+            num1 = Number(arr.slice(0, arr.indexOf(value)).join(''))
+            num2 = Number(arr.slice(arr.indexOf(value) + 1).join(''))
         }
     })
     switch (operator) {
@@ -73,28 +95,12 @@ const calculusLogic = () => {
             } else if (num1 % num2 !== 0) {
                 result = operate(divide, num1, num2).toFixed(4)
             } else {
-                rresult = operate(divide, num1, num2)
+                result = operate(divide, num1, num2)
         }
         break;
     }
     resultDisplay.textContent = String(result)
     return result
-}
-
-
-
-let validCalc
-
-
-const solve = () => {
-    verifySyntax(userInputArr)
-    if (validCalc) {
-        calculusLogic(userInputArr)
-    } else {
-        return
-    }
-    userInputArr = []
-    userInputArr[0] = result
 }
 
 //Event Listeners (Mouse)
@@ -105,12 +111,3 @@ dotBtn.addEventListener('click', userDataInput)
 deleteBtn.addEventListener('click', deleteInput)
 clearBtn.addEventListener('click', clearInput)
 equalBtn.addEventListener('click', solve)
-
-//Main functions
-
-const add = (a,b) => a + b;
-const substract = (a,b) => a - b;
-const multiply = (a,b) => a * b;
-const divide = (a,b) => a / b;
-
-const operate = (operator, num1, num2) => (operator(num1,num2));
